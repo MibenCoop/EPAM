@@ -15,6 +15,18 @@ function map(arr, func) {
     return resArr;
 }
 
+
+//Another view of map
+
+// let map = (arr, func) => {
+//     let resArr = [];
+//     arr.forEach(element => { 
+//         resArr = resArr.concat(func(element));
+//     });
+//     return resArr;
+// }
+
+
 //Test array
 let arr = [1,2,3];
 console.log(map(arr, double));
