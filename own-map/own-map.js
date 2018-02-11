@@ -7,15 +7,20 @@ function triple(a) {
 }
 
 
+// function map(arr, func) {
+//     let resArr = [];
+//     for (let elem of arr) {
+//         resArr = resArr.concat(func(elem));
+//     }
+//     return resArr;
+// }
+
+//Realisation whith reduce
 function map(arr, func) {
-    let resArr = [];
-    for (let elem of arr) {
-        resArr = resArr.concat(func(elem));
-    }
-    return resArr;
+    let newArr = [];
+    return arr.reduce((prev,curr) => newArr = newArr.concat(func(curr)), 0);
+    
 }
-
-
 //Another view of map
 
 // let map = (arr, func) => {
@@ -30,4 +35,4 @@ function map(arr, func) {
 //Test array
 let arr = [1,2,3];
 console.log(map(arr, double));
-console.log(map(arr, triple));
+// console.log(map(arr, triple));
