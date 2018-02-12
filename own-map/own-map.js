@@ -15,12 +15,12 @@ function triple(a) {
 //     return resArr;
 // }
 
-//Realisation whith reduce
-function map(arr, func) {
-    let newArr = [];
-    return arr.reduce((prev,curr) => newArr = newArr.concat(func(curr)), 0);
-    
-}
+// //Realisation whith reduce
+// function map(arr, func) {
+//     let newArr = [];
+//     return arr.reduce((prev,curr) => newArr = newArr.concat(func(curr)), 0);
+// }
+
 //Another view of map
 
 // let map = (arr, func) => {
@@ -30,6 +30,14 @@ function map(arr, func) {
 //     });
 //     return resArr;
 // }
+
+
+//Simple reduce
+
+function map(arr, func) {
+    return arr.reduce((prev,curr) => prev.concat(func(curr)), []);
+    
+}
 
 
 //Test array
