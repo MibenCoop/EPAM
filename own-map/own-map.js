@@ -35,8 +35,7 @@ function triple(a) {
 //Simple reduce
 
 function map(arr, func) {
-    return arr.reduce((prev,curr) => prev.concat(func(curr)), []);
-    
+    return arr.reduce((accum, curr) => accum.concat(func(curr)), []);
 }
 
 
