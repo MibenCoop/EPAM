@@ -1,16 +1,20 @@
-function calculator() {
-  let value = null;
+function calculateSum() {
+  let value = 0;
+
+  //Первый раз тоже можно передавать несколько значений
   function calculate(num) {
       let args = [...arguments];
       args.forEach((arg) => {
         value += arg;
       })
-      return value;
+    return value;
   }
 
   return calculate;
 }
-let sum = calculator();
+let sum = calculateSum();
+
+
 let result;
 result = sum(1);
 console.log(result)
