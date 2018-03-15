@@ -1,39 +1,32 @@
-//Кнопки для добавления событий сортировки
-const orderButton = document.querySelector('.order');
-const nameButton = document.querySelector('.name');
-const birthdayButton = document.querySelector('.birthday');
-
-//Селекторы кнопок для сортировки
-const numsSelector = "td:first-child";
-const namesSelector = "td:nth-child(2)";
-const birthdaysSelector = "td:last-child";
-
 //Обработчики событий
-orderButton.addEventListener('click', () => SortColumn('nums'));
-nameButton.addEventListener('click', () => SortColumn('names'));
-birthdayButton.addEventListener('click', () => SortColumn('birthdays'));
+(document.querySelector('.table'))
+    .addEventListener('click', (event) => SortColumn(event));
 
 //Главная функция
-const SortColumn = (buttonValue) => {
-    const newTableBody = document.createElement('tbody');
+const SortColumn = (event) => {
+    const currTarget = event.target.classList.value;
     const oldTableBody = document.querySelector('tbody');    
 
     //Обработчики в зависимости от колонки
-    const sortOrder = isDirectOrder(oldTableBody, buttonValue);
-    if ( buttonValue === "nums") {
-        sortedElems = createArray(sortOrder, compareNumbers, numsSelector);    
-    } else if ( buttonValue === "names" ) {
-        sortedElems = createArray(sortOrder, compareNames, namesSelector);
-    } else if ( buttonValue === "birthdays") {
-        sortedElems = createArray(sortOrder, compareBirthdays, birthdaysSelector);
+    const directOrder = isDirectOrder(oldTableBody, currTarget);
+
+    if ( currTarget === "numeration") {
+        sortedElems = createArray(directOrder, compareNumbers, "td:first-child");    
+    } else if ( currTarget === "names" ) {
+        sortedElems = createArray(directOrder, compareNames, "td:nth-child(2)");
+    } else if ( currTarget === "birthdays") {
+        sortedElems = createArray(directOrder, compareBirthdays, "td:last-child");
     }
+
+    const newTableBody = document.createElement('tbody');
     //Класс в зависимости от направления сортировки
-    sortOrder ? null : (newTableBody.classList.add('order') && newTableBody.classList.add(buttonValue));
+    if (!directOrder) {
+      newTableBody.classList.add('order');
+      newTableBody.classList.add(currTarget);
+    } 
 
     //Создает новую таблицу
-    sortedElems.forEach((elem) => {
-        newTableBody.appendChild(elem.parentElement);
-    });
+    sortedElems.forEach((elem) => newTableBody.appendChild(elem.parentElement));
 
     //Берем родителя tbody => tableBody, и заменяем в нем tbody
     (oldTableBody.parentElement).replaceChild(newTableBody, oldTableBody);
@@ -56,14 +49,10 @@ const sortTableData = (directOrder, tableData, sortFn) => {
 }
 
 //Сравнение чисел
-const compareNumbers = (a,b) => {
-    return a.innerHTML - b.innerHTML;
-}
+const compareNumbers = (a,b) => a.innerHTML - b.innerHTML;
 
 //Сравнение имен
-const compareNames = (a,b) => {
-    return a.innerHTML > b.innerHTML ? 1 : a.innerHTML < b.innerHTML ? -1 : 0 ;
-}
+const compareNames = (a,b) => a.innerHTML > b.innerHTML ? 1 : a.innerHTML < b.innerHTML ? -1 : 0 ;
 
 //Cравнение дней рождений по 2 последним цифра(возможно заменить на regex)
 const compareBirthdays = (a,b) => {
