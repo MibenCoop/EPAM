@@ -1,0 +1,5 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<h1>Todo App</h1>
+<app-todo-input (saved)="saveTodo($event)"></app-todo-input>
+<app-todo-list [todos]="todos"></app-todo-list>
+<app-todo-footer (clear)="clearTodos($event)" [isEmpty]="isEmpty"></app-todo-footer>

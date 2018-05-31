@@ -1,0 +1,5 @@
+<div class="list-item">
+  <input #doneTodo [checked]="todo.done" (change)="changeTodoStatus(todo)" type="checkbox">
+  <span [ngClass]="{'checked': todo.done}">{{todo.input}}</span>
+  <button type="button" (click)="remove(todo.id)" >X</button>
+</div>

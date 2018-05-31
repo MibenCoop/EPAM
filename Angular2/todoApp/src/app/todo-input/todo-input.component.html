@@ -1,0 +1,3 @@
+<label for="todoInput">Input todo</label><br/>
+<input #todoInput type="text" name="todoInput" (keyup)="updateUi(todoInput.value)" /><br/>
+<button type="button" (click)="addTodo(todoInput)">Add</button>
